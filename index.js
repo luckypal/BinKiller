@@ -115,15 +115,15 @@ const startAuth = async () => {
 
 const startListener = () => {
   console.log('[+] starting listener')
-  /*mtproto.updates.on('updates', ({ updates }) => {
-    console.log('UPDATES', updates);
+  mtproto.updates.on('updates', ({ updates }) => {
     const newChannelMessages = updates.filter((update) => update._ === 'updateNewChannelMessage').map(({ message }) => message) // filter `updateNewChannelMessage` types only and extract the 'message' object
 
+    if (newChannelMessages.length > 0) console.log('updates:', logTime(), updateInfo);
     for (const message of newChannelMessages) {
       // printing new channel messages
       console.log(`[${message.to_id.channel_id}] ${message.message}`)
     }
-  });*/
+  });
   bindEvents();
 }
 
@@ -166,9 +166,9 @@ const bindEvents = () => {
     console.log('updatesCombined:', logTime(), updateInfo);
   });
 
-  mtproto.updates.on('updates', (updateInfo) => {
-    console.log('updates:', logTime(), updateInfo);
-  });
+  // mtproto.updates.on('updates', (updateInfo) => {
+  //   console.log('updates:', logTime(), updateInfo);
+  // });
 
   mtproto.updates.on('updateShortSentMessage', (updateInfo) => {
     console.log('updateShortSentMessage:', logTime(), updateInfo);
